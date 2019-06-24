@@ -2,6 +2,9 @@
   "name": "rwa-ts-monorepo",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js,.ts,.tsx packages/**"
+  },
   "workspaces": {
     "packages": [
       "packages/*"
@@ -11,7 +14,27 @@
   "devDependencies": {
     "@types/react": "16.8.19",
     "@types/react-native": "0.57.60",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
     "concurrently": "4.1.0",
+    "eslint": "^6.0.0",
+    "eslint-config-prettier": "^5.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.0",
+    "husky": "^2.4.1",
+    "lint-staged": "^8.2.1",
+    "prettier": "^1.18.2",
     "typescript": "3.5.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
